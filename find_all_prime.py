@@ -5,7 +5,7 @@ class Prime:
     def find_all_prime(self):
         self.primes = []
         for num in range(1, self.number+1):
-            for i in range(2, num//2):
+            for i in range(2, (num//2) + 1):
                 if num % i == 0:
                     break
             else:
