@@ -1,4 +1,5 @@
 sample = ['eat', 'hat', 'ate', 'tea', 'ath', 'test', 'etst']
+# sample_output = [['eat', 'ate', 'tea'], ['hat', 'ath'], ['test', 'etst']]
 
 words = []
 for word in sample:
