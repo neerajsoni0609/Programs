@@ -3,3 +3,5 @@ sample2 = [1, 2, 3]
 
 output = list(zip(sample1, sample2))
 print(output)
+
+# This program was asked in Cybage Interview

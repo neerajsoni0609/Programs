@@ -29,3 +29,5 @@ def find_leader(sample):
 
 leaders = find_leader(A)
 print(leaders)
+
+# This program was asked in Cybage Interview
