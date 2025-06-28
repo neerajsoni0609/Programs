@@ -4,10 +4,9 @@ def fibonacci(number):
     current = 1
 
     for i in range(number):
-        result = previous + current
-        series.append(result)
-        previous = current
-        current = result
+        next = previous + current
+        series.append(current)
+        previous, current = current, next
 
     return series
 
