@@ -227,3 +227,29 @@ Location:
 In modern Python versions (since PEP 3147), .pyc files are stored in a __pycache__ directory within the package or module directory to reduce clutter. 
 In essence, .pyc files are a caching mechanism for compiled Python bytecode, designed to improve the efficiency of program execution by avoiding redundant compilation.
 
+Q. What is mutex in python
+In Python, a mutex (mutual exclusion object) is primarily implemented using the Lock class from the threading module. A mutex serves as a synchronization primitive to ensure that only one thread can access a shared resource or a critical section of code at a time, thereby preventing race conditions and data corruption in multithreaded environments. 
+Key aspects of mutexes in Python:
+threading.Lock:
+This class provides the fundamental mechanism for creating and managing mutexes.
+acquire(): A thread calls this method to obtain the lock. If the lock is already held by another thread, the calling thread will block until the lock is released.
+release(): A thread calls this method to release the lock, making it available for other waiting threads to acquire.
+with statement:
+Python's with statement is highly recommended for managing locks as it ensures that the lock is automatically released, even if exceptions occur within the critical section. This prevents deadlocks and resource leaks.
+
+Q. what is higher order functions in python
+In Python, a higher-order function is a function that fulfills at least one of the following criteria: 
+Takes one or more functions as arguments: This allows the higher-order function to customize its behavior based on the function(s) passed to it. A common example is the map() function, which takes a function and an iterable, applying the function to each item in the iterable.
+
+Returns a function as its result: This enables the creation of functions dynamically, often used in scenarios like function factories or decorators.
+
+Key characteristics and applications:
+First-Class Functions:
+Python treats functions as first-class citizens, meaning they can be assigned to variables, passed as arguments, and returned from other functions, just like any other data type (e.g., integers, strings). This foundational concept enables higher-order functions.
+Functional Programming:
+Higher-order functions are a core concept in functional programming paradigms, promoting code reusability, abstraction, and often leading to more concise and readable code.
+Built-in Examples:
+Python includes several built-in higher-order functions like map(), filter(), and reduce() (from functools).
+Decorators:
+Decorators in Python are a syntactic sugar for higher-order functions, providing a clean way to modify or enhance the behavior of other functions.
+
