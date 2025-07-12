@@ -253,3 +253,117 @@ Python includes several built-in higher-order functions like map(), filter(), an
 Decorators:
 Decorators in Python are a syntactic sugar for higher-order functions, providing a clean way to modify or enhance the behavior of other functions.
 
+Q. What is decorators?
+In Python, a decorator is a design pattern that allows you to add functionality to existing code without modifying its structure. It's essentially a function that takes another function as an argument, enhances it with extra features, and returns a modified version of the original function. Decorators are a powerful way to add logging, authentication, or timing to functions in a clean and reusable way. 
+Here's a breakdown:
+What it does:
+Decorators wrap a function, adding behavior before or after the original function executes. 
+How it works:
+They are higher-order functions, meaning they can take other functions as arguments and return new functions. 
+Why use them:
+Decorators promote code reusability, readability, and maintainability by separating concerns. They allow you to add functionality without altering the original function's core logic. 
+
+Q. What is generators?
+In programming, particularly in languages like Python, a generator is a special type of function that produces a sequence of values using the yield keyword. 
+Lazy Evaluation: Unlike regular functions that compute all values at once, generators compute and "yield" values only when requested, making them memory-efficient and useful for handling large datasets. 
+Example: A generator might produce an infinite sequence of numbers, only computing the next number when it's needed. 
+In essence, the term "generator" can refer to both electromechanical devices that produce electricity and special functions in programming that generate sequences of values on demand.
+
+Q. What is partition?
+In Spark, a partition is a fundamental unit of parallelism. It's a logical division of your data that allows Spark to process different parts of the dataset concurrently across the cluster. Essentially, it's how Spark breaks down large datasets into smaller, manageable chunks for parallel processing. 
+Here's a more detailed explanation:
+Logical Division:
+A partition is a logical chunk of data, not necessarily a physical separation of the data on disk. 
+Parallelism:
+Partitions are the basis for parallelism in Spark. Each partition can be processed independently by a single task on a worker node. 
+RDDs and DataFrames:
+Resilient Distributed Datasets (RDDs) and DataFrames in Spark are composed of partitions. The number of partitions determines how much parallelism can be achieved. 
+Optimizing Performance:
+Proper partitioning is crucial for performance. If a dataset is not partitioned well, it can lead to inefficient data shuffling and slow processing. 
+Examples:
+When you read data into Spark (e.g., from a CSV file), the data is often automatically partitioned. You can also explicitly control partitioning using functions like repartition() or coalesce(). 
+
+Q. What is Bucketing?
+Bucketing, in the context of data storage and processing, is a technique that divides a dataset into smaller, more manageable groups called buckets, based on the values of specific columns. This approach enhances query performance by limiting the amount of data that needs to be scanned during data retrieval. In essence, it's a way to organize data into distinct "bins" for more efficient access and analysis. 
+Here's a breakdown of bucketing and its applications:
+1. Data Organization:
+Partitioning vs. Bucketing:
+While both are used for data organization, partitioning divides data based on broad ranges of a column (e.g., sales by year), while bucketing divides data based on a hash function applied to a specific column or columns. 
+Example:
+If you have a large customer table, you might partition it by region and then bucket it by customer ID. This allows you to quickly access all customers from a specific region and further refine the search to a particular customer ID. 
+
+Q. what is persist and cache in spark ?
+
+Q. How join will be performed if size of the data is more than memory, eg 15 gb join to be performed on 10 gb ram?
+
+Q. How many partitions will be created in male, female, null?
+When partitioning a dataset based on a column that can contain "male", "female", or "null" values, you will typically end up with three partitions: one for "male" values, one for "female" values, and one for "null" values. 
+In more detail: 
+Male and Female Partitions:
+If the partitioning column is explicitly defined as "male" or "female", then rows with those specific values will be placed into their corresponding partitions.
+Null Partition:
+If the partitioning column contains NULL values, a dedicated partition is created to hold all the rows with NULL values in that column.
+
+Q. Convert array into different rows ?
+Using Explode function
+
+Q. What is SparkContext ?
+In Apache Spark, SparkContext serves as the entry point for interacting with the Spark cluster and its core functionalities. It represents the connection to a Spark cluster and is responsible for coordinating and managing the resources required for executing tasks. Essentially, it's the bridge between your Spark application and the Spark cluster, enabling you to create Resilient Distributed Datasets (RDDs), accumulators, and broadcast variables. 
+
+Q. what is pyspark catalyst optimizer ?
+The Catalyst optimizer is a core component of PySpark's SQL engine and DataFrame API, designed to automatically optimize the execution of data processing tasks. It transforms user-defined transformations into an efficient physical execution plan, similar to how the DAG scheduler does for RDDs. Catalyst's key function is to analyze a logical plan (representing the user's query) and generate the most efficient physical plan for execution, ultimately leading to faster query execution and reduced resource consumption. 
+
+Q. what is encryption in s3 through KMS?
+In Amazon S3, server-side encryption with AWS KMS (SSE-KMS) encrypts objects using keys managed in AWS Key Management Service (KMS). This provides more control over encryption keys compared to S3-managed keys (SSE-S3). You can use customer-managed keys (CMKs) or AWS-managed keys within KMS for SSE-KMS, allowing for key rotation, access control, and auditing. 
+Encrypt Your Amazon Redshift Loads with Amazon S3 and AWS ...
+Here's a more detailed explanation:
+SSE-KMS in S3:
+Key Management:
+Instead of S3 managing the encryption keys, SSE-KMS uses keys stored and managed in AWS KMS. 
+Customer-Managed Keys (CMKs):
+You can create and manage your own CMKs in KMS, giving you greater control over key usage and lifecycle. 
+AWS-Managed Keys:
+You can also use AWS-managed keys within KMS for encryption, simplifying key management while still leveraging KMS features. 
+Envelope Encryption:
+SSE-KMS uses envelope encryption. A data encryption key (DEK) is generated for each object, encrypted with the CMK (or AWS-managed key), and then the DEK encrypts the object. 
+Data Protection:
+When you upload an object, S3 sends a request to KMS to generate a data key and encrypt it with the specified CMK. 
+Cost Optimization:
+S3 Tables uses S3 Bucket Keys by default for SSE-KMS, which can help reduce costs. 
+Auditing:
+AWS CloudTrail logs KMS key usage for auditing purposes. 
+Benefits of using SSE-KMS:
+Greater Control: You have more control over the encryption keys, including creation, rotation, and access control. 
+Compliance: SSE-KMS can help meet compliance requirements that mandate key management. 
+Enhanced Security: By using KMS-managed keys, you can benefit from KMS features like key rotation, access policies, and auditing. 
+
+Q. What is versoning in S3 ?
+S3 versioning is a feature in Amazon S3 that allows you to store multiple versions of an object within the same bucket. When versioning is enabled, each time you upload a new version of an object, S3 assigns a unique version ID, creating a history of changes. This enables you to recover accidentally deleted or overwritten objects and maintain a record of changes, crucial for compliance and data integrity. 
+Here's a more detailed explanation:
+How it works:
+Enable Versioning:
+You enable versioning at the S3 bucket level. 
+Unique Version IDs:
+Upon enabling, S3 automatically assigns a unique version ID to each object stored in the bucket. 
+Multiple Versions:
+Even if you upload a new version of an existing object, the previous version is preserved with its unique ID. 
+Delete Markers:
+When you "delete" an object in a versioned bucket, it's not actually removed. Instead, S3 adds a delete marker, which becomes the current version. The previous versions remain accessible. 
+Restoring Versions:
+You can easily restore previous versions by retrieving the desired version ID or by deleting the delete marker (if it's the current version). 
+Key benefits:
+Data Recovery:
+Versioning provides a safety net for accidental deletions or overwrites, allowing you to retrieve previous states of your data. 
+Auditing and Compliance:
+Maintaining object versions helps track changes and meet compliance requirements for data history. 
+Testing and Development:
+You can test new versions of your applications or data without fear of losing previous stable versions. 
+Disaster Recovery:
+In case of a disaster, you can quickly restore your data to a previous state. 
+Important considerations:
+Storage Costs:
+Each version of an object consumes storage space, so versioning can increase storage costs, especially with frequent updates.
+Complexity:
+Managing a large number of versions can become complex, so it's important to use lifecycle policies to manage object versions and delete older, less frequently accessed versions.
+Performance:
+Listing objects in a versioned bucket can be slower as the number of versions grows. 
